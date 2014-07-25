@@ -85,34 +85,3 @@ exports.deleteUser = function(req, res) {
         });
     });
 }
-
-/*--------------------------------------------------------------------------------------------------------------------*/
-// Populate database with sample data -- Only used once: the first time the application is started.
-// You'd typically not find this code in a real-life app, since the database would already exist.
-var populateDB = function() {
-
-    var users = [
-    {
-        name: "EDI",
-				balance: "0",
-				dates: "",
-				persons: ""
-    },
-    {
-        name: "FEDE",
-				balance: "0",
-				dates: "",
-				persons: ""
-    },
-    {
-        name: "ROBI",
-				balance: "0",
-				dates: "",
-				persons: ""
-    }];
-
-    database.collection('users', function(err, collection) {
-        collection.insert(users, {safe:true}, function(err, result) {});
-    });
-
-};
