@@ -1,0 +1,1 @@
+App for collaborative payments, at the moment it only works for payments of 1 euro/person (the average price of a coffee in Milan).

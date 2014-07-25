@@ -1,0 +1,92 @@
+<html>
+<head>   
+ <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+ 	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+<script src="lib/jquery-1.8.2.min.js"></script>
+<script src="lib/bootstrap-multiselect.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.multiselect').multiselect();
+  });
+</script>
+</head>
+
+<body>
+<div class="row-fluid">
+
+    <form class="form-horizontal span12">
+
+        <fieldset>
+
+            <legend>User Details</legend>
+            <br/>
+
+            <div class="row">
+                <div class="span8">
+
+                    <div class="control-group">
+                        <label for="name" class="control-label">Name:</label>
+
+                        <div class="controls">
+                            <input type="text" id="name" name="name" value="<%= name %>"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="balance" class="control-label">Balance:</label>
+                        <div class="controls">
+                            <input type="text" id="balance" name="balance" value="<%= balance %>"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+									
+                    <div class="control-group">
+                        <label for="date" class="control-label">Date:</label>
+                        <div class="controls">										
+							<input type="text" id="date"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="persons" class="control-label">Persons:</label>
+
+                        <div class="controls">
+<select class="multiselect" multiple="multiple">
+<option value="test1">test1</option>
+<option value="test2">test2</option>
+</select>					
+						
+                        </div>
+                    </div>
+				
+
+                </div>
+
+            </div>
+
+        </fieldset>
+
+        <div class="form-actions">
+            <a href="#" class="btn btn-primary save">Save</a>
+            <a href="#" class="btn delete">Delete</a>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="row-fluid status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none">
+            <b>Success!</b> User saved successfully
+        </div>
+    </div>
+</div>
+</body>
+</html>

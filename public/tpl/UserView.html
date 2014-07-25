@@ -1,0 +1,109 @@
+<form>
+
+	<legend>Dettagli utente</legend>
+	
+	<table width="100%" cellpadding="7">
+		<tr><td width="60" align="right">
+			<label for="name" class="control-label" style="color:#666;">Nome:</label>
+		</td>
+		<td>
+			<div class="controls">
+				<input type="text" id="name" name="name" value="<%= name %>"/>
+			</div>
+		</td></tr>
+		<tr><td align="right">
+			<label for="balance" class="control-label" style="color:#666;">Credito:</label>
+		</td>
+		<td>					
+			<div class="controls" style="margin-top:-4px;">
+				<% var balanceColor = "#68a926";
+				if (balance < 0) {
+					balanceColor = "red";
+				} else if (balance == 0) {
+					balanceColor = "#000;"
+				}%>
+				<span class="balanceColor" style="color:<%= balanceColor %>"><b><span class="balance"><%= balance %></span> &euro;</b></span>
+			</div>
+		</td></tr>
+		<tr><td align="right">			
+			<label for="date" class="control-label" style="color:#666;">Data:</label>
+		</td>
+		<td>					
+			<div class="controls" id="date" style="margin-top:-4px;">										
+				<%= dates[0] %>
+			</div>
+		</td></tr>
+		<tr><td align="right">
+			<label for="persons" class="control-label" style="color:#666;">Offre a:</label>
+		</td>
+		<td>					
+			<div class="controls">
+				<select id="persons" name="persons" class="multiselect" multiple="multiple">
+					<% 
+					if (allPersons != "") {
+						_.each(allPersons.split(";"), function(person) { 									
+							var selected = false;
+							if (dates[0].date == today) {
+								_.each(dates[0].persons, function(dp) { 
+									if (person == dp) { 
+										selected = true;
+									}
+								}); 
+							}
+							if (selected) { %>
+								<option value="<%= person %>" selected="selected"><%= person %></option>
+							<% } else if (person != name) { %>
+								<option value="<%= person %>" ><%= person %></option>
+							<% } 
+						}); 
+					}
+					%>
+				</select>
+			</div>
+		</td></tr>
+	</table>
+
+	<div class="form-actions" style="width:270px;" align="center">
+		<a href="#" class="btn btn-primary save">Salva</a>
+        <!-- <a href="#" class="btn delete">Cancella</a> -->
+	</div>
+
+</form>
+	
+
+<% if (window.location.href.indexOf("add") < 0) { %>
+	<div class="alert alert-success" style="display: none;">
+		Dati salvati con successo
+	</div>
+
+	<div align="center" style="width:270px; margin-left:18px;">
+		<button type="button" class="btn btn-default" id="btnCD">Storico pagamenti</button>
+	</div>
+	<br />
+	<div id="creditsAndDebits">
+		<% 
+		if (creditsAndDebits != "") { %>
+			<table border="0" cellpadding="5" width="300" class="user-text" style="border-collapse:collapse;">
+				<thead align="left" style="color:#006699;border-bottom: 1px solid #006699;">
+					<tr>
+						<th><b>Data</b></th>
+						<th><b>Persone</b></th>
+					</tr>
+				</thead>
+				<% var i = 0; 
+				_.each(creditsAndDebits, function(cd) {
+					var color = "#68a926";
+					if (cd.type == "debit") {
+						color = "red";
+					} %>
+					<tr style="border-bottom: 1px solid #ccc;">
+						<td width="100"><span style="color:<%= color %>;"><b><%= cd.date %></b></span></td>
+						<td><span style="color:<%= color %>;"><%= cd.persons %></span></td>
+					</tr>
+				<%	i++; 
+				}); %>
+			</table> 
+		<%}
+		%>
+	</div>
+<% } %>	

@@ -1,0 +1,10 @@
+<a href="#users/<%= _id %>" class="thumbnail plain" style="text-align: center;">
+    <h5><%= name %></h5>
+	<% var balanceColor = "#68a926";
+	if (balance < 0) {
+		balanceColor = "red";
+	} else if (balance == 0) {
+		balanceColor = "#000;"
+	}%>
+	<span style="color:<%= balanceColor %>"><b><%= balance %> &euro;</b></span>
+</a>
